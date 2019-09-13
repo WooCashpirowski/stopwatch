@@ -4,7 +4,7 @@ let prevTime,
 
 function updateTime() {
   let tempTime = elapsedTime,
-    mSec = tempTime % 100;
+    mSec = tempTime % 1000;
   tempTime = Math.floor(tempTime / 1000);
   let sec = tempTime % 60;
   tempTime = Math.floor(tempTime / 60);
@@ -13,6 +13,9 @@ function updateTime() {
 
   if (mSec < 10) {
     mSec = "0" + mSec;
+  }
+  if (mSec >= 100) {
+    mSec = Math.floor(mSec / 10);
   }
   if (sec < 10) {
     sec = "0" + sec;
