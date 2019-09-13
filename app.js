@@ -31,7 +31,7 @@ function updateTime() {
   var r = $("#svg #bar").attr("r");
   var c = Math.PI * (r * 2);
 
-  var pct = ((59 - sec) / 60) * c;
+  var pct = ((59 - sec) / 59) * c;
 
   $("#svg #bar").css({ strokeDashoffset: pct });
 
