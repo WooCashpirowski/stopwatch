@@ -28,6 +28,7 @@ function updateTime() {
 
   $(".display").text(time);
 
+  // Animated stroke
   var r = $("#svg #bar").attr("r");
   var c = Math.PI * (r * 2);
 
@@ -38,34 +39,55 @@ function updateTime() {
   $("#cont").attr("data-min", min);
 }
 
-$(".start").click(function() {
-  if (!stopwatchInterval) {
-    stopwatchInterval = setInterval(function() {
-      if (!prevTime) {
-        prevTime = Date.now();
-      }
-      elapsedTime += Date.now() - prevTime;
+function go() {
+  stopwatchInterval = setInterval(function() {
+    if (!prevTime) {
       prevTime = Date.now();
+    }
+    elapsedTime += Date.now() - prevTime;
+    prevTime = Date.now();
 
-      updateTime();
-    }, 10);
-  }
-  $(".reset").attr("disabled", true);
-});
+    updateTime();
+  }, 10);
+}
 
-$(".stop").click(function() {
-  if (stopwatchInterval) {
-    clearInterval(stopwatchInterval);
-    stopwatchInterval = null;
-  }
+function pause() {
+  clearInterval(stopwatchInterval);
+  stopwatchInterval = null;
+
   prevTime = null;
   $(".reset").attr("disabled", false);
+}
+
+$(".toggle").click(function() {
+  if (!stopwatchInterval) {
+    go();
+    this.innerText = "Pause";
+    $(".lap").attr("disabled", false);
+  } else if (stopwatchInterval) {
+    pause();
+    this.innerText = "Go";
+    $(".lap").attr("disabled", true);
+  }
+});
+
+$(".lap").click(function() {
+  let savedLap = $("<li></li>");
+  savedLap.text($(".display").text());
+  $(".laps").append(savedLap.hide().fadeIn(300));
 });
 
 $(".reset").click(function() {
   $(".stop").click();
   elapsedTime = 0;
+  // $(".laps").html("");
+  $(".laps")
+    .children()
+    .fadeOut(800, function() {
+      this.remove();
+    });
   updateTime();
+  $(".reset").attr("disabled", true);
 });
 
 $(document).ready(function() {

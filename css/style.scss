@@ -11,14 +11,14 @@ body {
   flex-direction: column;
 }
 .container {
-  position: absolute;
+  position: relative;
   width: 350px;
   height: 350px;
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.8);
-  top: 50%;
+  top: 25%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -23%);
 
   .display {
     position: absolute;
@@ -46,8 +46,15 @@ body {
       border-radius: 50%;
       outline: none;
       cursor: pointer;
+
       &:disabled {
         cursor: auto;
+      }
+      &.toggle {
+        font-size: 1.2rem;
+      }
+      &.lap {
+        border-color: #ff9f1e;
       }
     }
   }
@@ -55,9 +62,9 @@ body {
 #cont {
   position: absolute;
   display: block;
-  top: 50%;
+  top: 25%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -25%);
   height: 375px;
   width: 375px;
   margin: 0 auto;
@@ -71,8 +78,8 @@ body {
     height: 375px;
     width: 375px;
     left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: 25%;
+    transform: translate(-50%, -25%);
     box-shadow: inset 0 0 1em black;
     content: attr(data-pct);
     border-radius: 100%;
@@ -91,5 +98,25 @@ body {
     #bar {
       stroke: #ff9f1e;
     }
+  }
+}
+ul.laps {
+  margin-top: 18vh;
+  color: #f3f3f3;
+  font-size: 1.2rem;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  list-style: decimal inside;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: space-between;
+
+  li {
+    padding: 0.2rem 0.5rem;
+    border: 1px solid #ff9f1e;
+    border-radius: 5px;
+    margin: 0.2rem;
+    background: #ff9e1e1a;
   }
 }

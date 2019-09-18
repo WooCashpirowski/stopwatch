@@ -11,11 +11,12 @@
     <div class="container">
       <div class="display"></div>
       <div class="buttons">
-        <button class="start">Start</button>
-        <button class="stop">Pause</button>
+        <button class="toggle">Go</button>
+        <button class="lap" disabled>Lap</button>
         <button class="reset" disabled>Reset</button>
       </div>
     </div>
+
     <div id="cont" data-min="0">
       <svg
         id="svg"
@@ -44,6 +45,8 @@
         ></circle>
       </svg>
     </div>
+    <ul class="laps"></ul>
+
     <script
       src="https://code.jquery.com/jquery-3.4.1.min.js"
       integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
